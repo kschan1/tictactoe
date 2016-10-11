@@ -88,7 +88,7 @@ function switchPlayer(current) {
 //----------------------------------------
 //JQuery
 
-var currentPlayer = 'O';
+var currentPlayer = 'X';
 var gameEnds = false;
 
 $('.grid').on('click',function(event){
@@ -98,13 +98,19 @@ $('.grid').on('click',function(event){
       $(event.target).text(currentPlayer);
       populate(currentPlayer,index);
       if (checkWin(currentPlayer)) {
+        gameEnds = true;
         console.log(currentPlayer + ' wins!');
-        gameEnds = true;
+        $('#result').text(currentPlayer + ' wins!');
       } else if (checkDraw()) {
-        console.log('Draw');
         gameEnds = true;
+        console.log('Draw');
+        $('#result').text('Draw!');
       }
       switchPlayer(currentPlayer);
+      $('#turn').text(currentPlayer + ' turn');
     }
+  }
+  if (gameEnds) {
+    $('#turn').text('');
   }
 })
