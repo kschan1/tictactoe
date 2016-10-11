@@ -1,0 +1,28 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+.board {
+  width: 300px;
+  background-color: black;
+  overflow: auto;
+  margin: 0 auto;
+}
+
+.grid {
+  display:inline-block;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  border: 1px solid white;
+  box-sizing: border-box;
+  float: left;
+  text-align: center;
+  font-size: 5em;
+  color: white;
+}
