@@ -9,7 +9,7 @@ function createBoard(gridNumber) {
   return board;
 }
 
-var board = createBoard(9);
+var gameBoard = createBoard(9);
 
 // Function to console log 1D board as 2D
 function printBoard(board) {
@@ -27,7 +27,7 @@ function printBoard(board) {
 }
 
 // Function to change board element of given index
-function populate(key, index) {
+function populate(board, key, index) {
   board[index] = key;
 }
 
@@ -38,28 +38,28 @@ var sampleBoard = [
   'x','o','o'
 ];
 
-function match(key, index) {
+function match(board, key, index) {
   return key === board[index];
 }
 
 // Winning condition
-function checkWin(key) {
-  var rowWin = (match(key,0) && match(key,1) && match(key,2)) ||
-  (match(key,3) && match(key,4) && match(key,5)) ||
-  (match(key,6) && match(key,7) && match(key,8));
+function checkWin(board, key) {
+  var rowWin = (match(board,key,0) && match(board,key,1) && match(board,key,2)) ||
+  (match(board,key,3) && match(board,key,4) && match(board,key,5)) ||
+  (match(board,key,6) && match(board,key,7) && match(board,key,8));
 
-  var columnWIn = (match(key,0) && match(key,3) && match(key,6)) ||
-  (match(key,1) && match(key,4) && match(key,7)) ||
-  (match(key,2) && match(key,5) && match(key,8));
+  var columnWIn = (match(board,key,0) && match(board,key,3) && match(board,key,6)) ||
+  (match(board,key,1) && match(board,key,4) && match(board,key,7)) ||
+  (match(board,key,2) && match(board,key,5) && match(board,key,8));
 
-  var diagWin = (match(key,0) && match(key,4) && match(key,8)) ||
-  (match(key,6) && match(key,4) && match(key,2));
+  var diagWin = (match(board,key,0) && match(board,key,4) && match(board,key,8)) ||
+  (match(board,key,6) && match(board,key,4) && match(board,key,2));
 
   return rowWin || columnWIn || diagWin;
 }
 
 // Draw condition
-function checkDraw() {
+function checkDraw(board) {
   for (var i = 0; i < board.length; i++) {
     if (board[i] === '') {
       return false;
@@ -69,7 +69,7 @@ function checkDraw() {
 }
 
 // Function to play the game in the console
-function play(key, index) {
+function play(board, key, index) {
   populate(key, index);
   if (checkWin(key)) {
     console.log(key + ' Wins!');
@@ -85,24 +85,37 @@ function switchPlayer(current) {
   }
 }
 
+function resetGame(board) {
+  for (var i = 0; i < board.length; i++) {
+    board[i] = '';
+  }
+  gameEnds = false;
+  currentPlayer = 'X';
+  $('.grid').text('');
+  $('#result').text('');
+  $('#result').css({"display":"none"});
+  $('#turn').text(currentPlayer + ' turn');
+}
+
 //----------------------------------------
 //JQuery
 
 var currentPlayer = 'X';
 var gameEnds = false;
 
-$('.grid').on('click',function(event){
+$('.grid').on('click',function(event) {
   if (!gameEnds) {
     var index = $(event.target).index();
-    if (board[index] === ''){
+    if (gameBoard[index] === ''){
       $(event.target).text(currentPlayer);
+      $(event.target).css({fontSize: "0vw"});
       $(event.target).animate({fontSize: "6vw"});
-      populate(currentPlayer,index);
-      if (checkWin(currentPlayer)) {
+      populate(gameBoard,currentPlayer,index);
+      if (checkWin(gameBoard,currentPlayer)) {
         gameEnds = true;
         console.log(currentPlayer + ' wins!');
         $('#result').text(currentPlayer + ' wins!').slideDown();;
-      } else if (checkDraw()) {
+      } else if (checkDraw(gameBoard)) {
         gameEnds = true;
         console.log('Draw');
         $('#result').text('Draw!').slideDown();;
@@ -115,3 +128,7 @@ $('.grid').on('click',function(event){
     $('#turn').text('');
   }
 })
+
+$('#reset-btn').on('click',function(){
+  resetGame(gameBoard);
+});

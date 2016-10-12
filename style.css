@@ -41,3 +41,9 @@ h1 {
   padding-bottom: 1em;
   height: 2.5vw;
 }
+
+#reset-btn {
+  position: absolute;
+  right: 5em;
+  bottom: 5em;
+}
