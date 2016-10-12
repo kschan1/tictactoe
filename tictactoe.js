@@ -97,11 +97,31 @@ function resetGame(board) {
   $('#turn').text(currentPlayer + ' turn');
 }
 
+var xWin = 0;
+var oWin = 0;
+
+function tallyWin(player) {
+  if (player === 'X') {
+    xWin += 1;
+  }
+  else if (player === 'O') {
+    oWin += 1;
+  }
+}
+
 //----------------------------------------
 //JQuery
 
 var currentPlayer = 'X';
 var gameEnds = false;
+
+function updateTally(player) {
+  if (player === 'X') {
+    $('#x-tally').text(xWin);
+  } else if (player === 'O') {
+    $('#o-tally').text(oWin);
+  }
+}
 
 $('.grid').on('click',function(event) {
   if (!gameEnds) {
@@ -114,11 +134,13 @@ $('.grid').on('click',function(event) {
       if (checkWin(gameBoard,currentPlayer)) {
         gameEnds = true;
         console.log(currentPlayer + ' wins!');
-        $('#result').text(currentPlayer + ' wins!').slideDown();;
+        $('#result').text(currentPlayer + ' wins!').slideDown();
+        tallyWin(currentPlayer);
+        updateTally(currentPlayer);
       } else if (checkDraw(gameBoard)) {
         gameEnds = true;
         console.log('Draw');
-        $('#result').text('Draw!').slideDown();;
+        $('#result').text('Draw!').slideDown();
       }
       switchPlayer(currentPlayer);
       $('#turn').text(currentPlayer + ' turn');
@@ -127,7 +149,7 @@ $('.grid').on('click',function(event) {
   if (gameEnds) {
     $('#turn').text('');
   }
-})
+});
 
 $('#reset-btn').on('click',function(){
   resetGame(gameBoard);

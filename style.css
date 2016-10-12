@@ -15,6 +15,7 @@ h1 {
   background-color: black;
   overflow: auto;
   margin: 0 auto;
+  display: inline-block;
 }
 
 .grid {
@@ -27,6 +28,7 @@ h1 {
   float: left;
   font-size: 0vw;
   color: white;
+  cursor: pointer;
 }
 
 #result {
@@ -46,4 +48,15 @@ h1 {
   position: absolute;
   right: 5em;
   bottom: 5em;
+}
+
+.tally-box {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 2em 0 2em;
+  font-size: 2em;
+}
+
+.player {
+  border-bottom: 1px solid white;
 }
