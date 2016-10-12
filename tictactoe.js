@@ -96,15 +96,16 @@ $('.grid').on('click',function(event){
     var index = $(event.target).index();
     if (board[index] === ''){
       $(event.target).text(currentPlayer);
+      $(event.target).animate({fontSize: "6vw"});
       populate(currentPlayer,index);
       if (checkWin(currentPlayer)) {
         gameEnds = true;
         console.log(currentPlayer + ' wins!');
-        $('#result').text(currentPlayer + ' wins!');
+        $('#result').text(currentPlayer + ' wins!').slideDown();;
       } else if (checkDraw()) {
         gameEnds = true;
         console.log('Draw');
-        $('#result').text('Draw!');
+        $('#result').text('Draw!').slideDown();;
       }
       switchPlayer(currentPlayer);
       $('#turn').text(currentPlayer + ' turn');
