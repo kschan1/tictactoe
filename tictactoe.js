@@ -113,7 +113,7 @@ function updateTallyDisplay(player) {
   }
 }
 
-function updateGridDisplay(selectedGrid,player) {
+function updateGridDisplay(selectedGrid, player) {
   $(selectedGrid).text(player);
   $(selectedGrid).css({fontSize: "0vw"});
   $(selectedGrid).animate({fontSize: "6vw"});
@@ -127,35 +127,42 @@ function resetGameDisplay() {
 }
 
 //---------------------------------------------
-// Main game function
 
+// Main game function
 $('.grid').on('click',function(event) {
   if (!gameEnds) {
+    // Variable to store the index of the grid that was clicked on
     var index = $(event.target).index();
-    if (gameBoard[index] === ''){
-      updateGridDisplay(event.target,currentPlayer);
-      populate(gameBoard,currentPlayer,index);
 
+    // Update board data and display if it is an empty grid
+    if (gameBoard[index] === '') {
+      populate(gameBoard,currentPlayer,index);
+      updateGridDisplay(event.target,currentPlayer);
+
+      // Update tally data and display if player wins
       if (checkWin(gameBoard,currentPlayer)) {
         gameEnds = true;
         $('#result').text(currentPlayer + ' wins!').slideDown();
         tallyWin(currentPlayer);
         updateTallyDisplay(currentPlayer);
 
+      // Update result display if draw
       } else if (checkDraw(gameBoard)) {
         gameEnds = true;
         $('#result').text('Draw!').slideDown();
 
+      // Switch player if game is still continuing
       } else {
         switchPlayer(currentPlayer);
         $('#turn').text(currentPlayer + ' turn');
       }
     }
 
+    // Remove player's turn display if game has ended
     if (gameEnds) {
       $('#turn').text('');
     }
-    
+
   }
 });
 
