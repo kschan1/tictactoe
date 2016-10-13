@@ -42,12 +42,16 @@ h1 {
 .tally-box {
   display: inline-block;
   vertical-align: top;
-  padding: 0 50px 0 50px;
+  width: 100px;
   font-size: 3em;
 }
 
+.tally-box > p {
+  color: #333;
+}
+
 .player {
-  border-bottom: 3px solid #333;
+  /*border-bottom: 3px solid #333;*/
 }
 
 #result {
