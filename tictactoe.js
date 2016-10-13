@@ -130,7 +130,10 @@ function resetGameDisplay() {
 
 // Main game function
 $('.grid').on('click',function(event) {
-  if (!gameEnds) {
+  if (gameEnds) {
+    resetGameData(gameBoard);
+    resetGameDisplay();
+  } else if (!gameEnds) {
     // Variable to store the index of the grid that was clicked on
     var index = $(event.target).index();
 
@@ -160,14 +163,8 @@ $('.grid').on('click',function(event) {
 
     // Remove player's turn display if game has ended
     if (gameEnds) {
-      $('#turn').text('');
+      $('#turn').text('Click board to play again');
     }
 
   }
-});
-
-// Reset game when reset button is clicked
-$('#reset-btn').on('click',function(){
-  resetGameData(gameBoard);
-  resetGameDisplay();
 });
