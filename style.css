@@ -26,9 +26,20 @@ h1 {
   border: 1px solid white;
   box-sizing: border-box;
   float: left;
-  font-size: 0vw;
+  font-size: 6vw;
   color: white;
   cursor: pointer;
+}
+
+.tally-box {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 2em 0 2em;
+  font-size: 2em;
+}
+
+.player {
+  border-bottom: 1px solid white;
 }
 
 #result {
@@ -48,15 +59,4 @@ h1 {
   position: absolute;
   right: 5em;
   bottom: 5em;
-}
-
-.tally-box {
-  display: inline-block;
-  vertical-align: top;
-  padding: 0 2em 0 2em;
-  font-size: 2em;
-}
-
-.player {
-  border-bottom: 1px solid white;
 }
