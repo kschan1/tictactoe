@@ -1,6 +1,6 @@
 body {
-  background-color: black;
-  color: white;
+  background-color: #eee;
+  color: #333;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
@@ -14,13 +14,13 @@ h1 {
 }
 
 .wrapper {
-  min-width:  360px;
+  min-width: 360px;
 }
 
 .board {
   width: 360px;
   height: 360px;
-  background-color: black;
+  background-color: #333;
   overflow: auto;
   margin: 0 auto;
   display: inline-block;
@@ -32,7 +32,7 @@ h1 {
   height: 33.33333%;
   line-height: 120px;
   font-size: 4em;
-  border: 1px solid white;
+  border: 1px solid #eee;
   box-sizing: border-box;
   float: left;
   color: white;
@@ -47,7 +47,7 @@ h1 {
 }
 
 .player {
-  border-bottom: 1px solid white;
+  border-bottom: 3px solid #333;
 }
 
 #result {
