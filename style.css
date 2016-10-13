@@ -13,6 +13,10 @@ h1 {
   min-width: 3em;
 }
 
+.wrapper {
+  min-width:  360px;
+}
+
 .board {
   width: 360px;
   height: 360px;

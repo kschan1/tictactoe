@@ -7,33 +7,37 @@
     <title></title>
   </head>
   <body>
-    <h1>Tic-Tac-Toe</h1>
+    <div class="wrapper">
 
-    <div id="turn">X turn</div>
+      <h1>Tic-Tac-Toe</h1>
 
-    <div class="tally-box">
-      <p class="player">X</p>
-      <p id="x-tally">0</p>
+      <div id="turn">X turn</div>
+
+      <div class="tally-box">
+        <p class="player">X</p>
+        <p id="x-tally">0</p>
+      </div>
+
+      <div class="board">
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+        <div class="grid"></div>
+      </div>
+
+      <div class="tally-box">
+        <p class="player">O</p>
+        <p id="o-tally">0</p>
+      </div>
+
+      <div id="result"></div>
+
     </div>
-
-    <div class="board">
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-    </div>
-
-    <div class="tally-box">
-      <p class="player">O</p>
-      <p id="o-tally">0</p>
-    </div>
-
-    <div id="result"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
     <script src="tictactoe.js"></script>
