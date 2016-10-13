@@ -1,4 +1,3 @@
-console.log('its working');
 
 // Create empty board with the specified number of grids
 function createBoard(gridNumber) {
@@ -185,3 +184,36 @@ $.fn.extend({
         });
     }
 });
+
+//---------------------------------------------------
+// Konami code
+var konami = [38,38,40,40,37,39,37,39,66,65];
+var enteredKeys = [];
+var konamiIndex = 0;
+
+$(document).keydown(function(e) {
+  if (e.keyCode === konami[konamiIndex]) {
+    enteredKeys.push(e.keyCode);
+    konamiIndex += 1;
+  } else {
+    konamiIndex = 0;
+    enteredKeys = [];
+  }
+  if (enteredKeys.length === konami.length) {
+    cheatCode(currentPlayer);
+    konamiIndex = 0;
+    enteredKeys = [];
+  }
+});
+
+function cheatCode(player) {
+  if (!gameEnds) {
+    if (player === playerOne) {
+      playerOneWin += 30;
+      updateTallyDisplay(player);
+    } else if (player === playerTwo) {
+      playerTwoWin += 30;
+      updateTallyDisplay(player);
+    }
+  }
+}
