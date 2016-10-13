@@ -3,15 +3,19 @@ body {
   color: white;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  font-size: 16px;
 }
 
 h1 {
-  font-size: 5vw;
-  margin: 1vw;
+  font-size: 3em;
+  margin: 0.2em;
+  min-width: 3em;
 }
 
 .board {
-  width: 30vw;
+  width: 360px;
+  height: 360px;
   background-color: black;
   overflow: auto;
   margin: 0 auto;
@@ -20,13 +24,13 @@ h1 {
 
 .grid {
   display:inline-block;
-  width: 10vw;
-  height: 10vw;
-  line-height: 10vw;
+  width: 33.33333%;
+  height: 33.33333%;
+  line-height: 120px;
+  font-size: 4em;
   border: 1px solid white;
   box-sizing: border-box;
   float: left;
-  font-size: 6vw;
   color: white;
   cursor: pointer;
 }
@@ -34,8 +38,8 @@ h1 {
 .tally-box {
   display: inline-block;
   vertical-align: top;
-  padding: 0 2em 0 2em;
-  font-size: 2em;
+  padding: 0 50px 0 50px;
+  font-size: 3em;
 }
 
 .player {
@@ -43,20 +47,26 @@ h1 {
 }
 
 #result {
-  font-size: 5vw;
-  padding-top: 1vw;
-  height: 5vw;
+  font-size: 3em;
+  padding-top: 0.2em;
+  height: 3em;
   display: none;
 }
 
 #turn {
-  font-size: 2.5vw;
-  padding-bottom: 1em;
-  height: 2.5vw;
+  font-size: 1.5em;
+  padding-bottom: 0.5em;
+  height: 1.5em;
 }
 
 #reset-btn {
   position: absolute;
   right: 5em;
   bottom: 5em;
+}
+
+@media (max-width: 650px) {
+  .tally-box {
+    display: none;
+  }
 }

@@ -115,8 +115,8 @@ function updateTallyDisplay(player) {
 
 function updateGridDisplay(selectedGrid, player) {
   $(selectedGrid).text(player);
-  $(selectedGrid).css({fontSize: "0vw"});
-  $(selectedGrid).animate({fontSize: "6vw"});
+  $(selectedGrid).css({fontSize: "0em"});
+  $(selectedGrid).animate({fontSize: "4em"});
 }
 
 function resetGameDisplay() {
