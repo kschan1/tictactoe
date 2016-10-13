@@ -63,7 +63,7 @@ h1 {
   font-size: 3em;
   padding-top: 0.2em;
   height: 3em;
-  display: none;
+  /*display: none;*/
 }
 
 #turn {

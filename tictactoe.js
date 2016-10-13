@@ -107,9 +107,11 @@ function resetGameData(board) {
 
 function updateTallyDisplay(player) {
   if (player === playerOne) {
-    $('#x-tally').text(playerOneWin);
+    $('#p1-tally').text(playerOneWin);
+    $('#p1-tally').animateCss("flash");
   } else if (player === playerTwo) {
-    $('#o-tally').text(playerTwoWin);
+    $('#p2-tally').text(playerTwoWin);
+    $('#p2-tally').animateCss('flash');
   }
 }
 
@@ -122,7 +124,7 @@ function updateGridDisplay(selectedGrid, player) {
 function resetGameDisplay() {
   $('.grid').text('');
   $('#result').text('');
-  $('#result').css({"display":"none"});
+  // $('#result').css({"display":"none"});
   $('#turn').text(currentPlayer + ' turn');
 }
 
@@ -145,14 +147,19 @@ $('.grid').on('click',function(event) {
       // Update tally data and display if player wins
       if (checkWin(gameBoard,currentPlayer)) {
         gameEnds = true;
-        $('#result').text(currentPlayer + ' wins!').slideDown();
+        // $('#result').text(currentPlayer + ' wins!').slideDown();
+        $('#result').text(currentPlayer + ' wins!');
+        $('#result').animateCss('bounceIn');
+
         tallyWin(currentPlayer);
         updateTallyDisplay(currentPlayer);
 
       // Update result display if draw
       } else if (checkDraw(gameBoard)) {
         gameEnds = true;
-        $('#result').text('Draw!').slideDown();
+        // $('#result').text('Draw!').slideDown();
+        $('#result').text('Draw!')
+        $('#result').animateCss('bounce');
 
       // Switch player if game is still continuing
       } else {
@@ -167,4 +174,14 @@ $('.grid').on('click',function(event) {
     }
 
   }
+});
+
+// Create animateCss method for jQuery that add and then remove animation
+$.fn.extend({
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+        });
+    }
 });
