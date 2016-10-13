@@ -51,19 +51,25 @@ h1 {
   font-size: 3em;
 }
 
-.tally-box > p {
-  color: #333;
+.result-box {
+  height: 3em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
 }
 
-.player {
-  /*border-bottom: 3px solid #333;*/
+.tally-box-resp {
+  display: inline-block;
+  width: 360px;
+  text-align: left;
+  display: none;
+}
+
+.tally2 {
+  padding-left: 1em;
 }
 
 #result {
   font-size: 3em;
-  padding-top: 0.2em;
-  height: 3em;
-  /*display: none;*/
 }
 
 #turn {
@@ -81,5 +87,8 @@ h1 {
 @media (max-width: 650px) {
   .tally-box {
     display: none;
+  }
+  .tally-box-resp {
+    display: inline-block;
   }
 }

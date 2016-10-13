@@ -106,11 +106,11 @@ function resetGameData(board) {
 
 function updateTallyDisplay(player) {
   if (player === playerOne) {
-    $('#p1-tally').text(playerOneWin);
-    $('#p1-tally').animateCss("flash");
+    $('.p1-tally').text(playerOneWin);
+    $('.p1-tally').animateCss("flash");
   } else if (player === playerTwo) {
-    $('#p2-tally').text(playerTwoWin);
-    $('#p2-tally').animateCss('flash');
+    $('.p2-tally').text(playerTwoWin);
+    $('.p2-tally').animateCss('flash');
   }
 }
 
