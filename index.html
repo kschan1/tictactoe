@@ -14,9 +14,9 @@
 
       <div id="turn">X turn</div>
 
-      <div class="tally-box">
+      <div class="player-box">
         <p class="player" id="player-one">X</p>
-        <p id="p1-tally" class="p1-tally">-</p>
+        <p id="p1-lives" class="p1-lives">-</p>
       </div>
 
       <div class="board">
@@ -31,20 +31,20 @@
         <div class="grid"></div>
       </div>
 
-      <div class="tally-box">
+      <div class="player-box">
         <p class="player" id="player-two">O</p>
-        <p id="p2-tally" class="p2-tally">-</p>
+        <p id="p2-lives" class="p2-lives">-</p>
       </div>
 
       <div class="result-box">
         <div id="result"></div>
       </div>
 
-    </div>
+      <div class="player-box-resp">
+        <p>Player X lives: <span class="p1-lives lives2">-</span></p>
+        <p>Player O lives: <span class="p2-lives lives2">-</span></p>
+      </div>
 
-    <div class="tally-box-resp">
-      <p>Player X wins: <span class="p1-tally tally2">-</span></p>
-      <p>Player O wins: <span class="p2-tally tally2">-</span></p>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>

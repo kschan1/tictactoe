@@ -14,7 +14,7 @@ h1 {
 }
 
 .wrapper {
-  min-width: 360px;
+  min-width: 500px;
 }
 
 .board {
@@ -44,7 +44,7 @@ h1 {
   background-color: #333;
 }
 
-.tally-box {
+.player-box {
   display: inline-block;
   vertical-align: top;
   width: 100px;
@@ -57,14 +57,14 @@ h1 {
   padding-bottom: 0.2em;
 }
 
-.tally-box-resp {
+.player-box-resp {
   display: inline-block;
   width: 360px;
   text-align: left;
   display: none;
 }
 
-.tally2 {
+.lives2 {
   padding-left: 1em;
 }
 
@@ -85,10 +85,10 @@ h1 {
 }
 
 @media (max-width: 650px) {
-  .tally-box {
+  .player-box {
     display: none;
   }
-  .tally-box-resp {
+  .player-box-resp {
     display: inline-block;
   }
 }
