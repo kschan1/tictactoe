@@ -22,7 +22,7 @@ var playerOne = 'X';
 var playerTwo = 'O';
 
 // Variables for player lives
-var startingLives = 3
+var startingLives = 3;
 var playerOneLives = startingLives;
 var playerTwoLives = startingLives;
 
@@ -56,14 +56,14 @@ function checkWin(board, player) {
   (match(board,player,3) && match(board,player,4) && match(board,player,5)) ||
   (match(board,player,6) && match(board,player,7) && match(board,player,8));
 
-  var columnWIn = (match(board,player,0) && match(board,player,3) && match(board,player,6)) ||
+  var columnWin = (match(board,player,0) && match(board,player,3) && match(board,player,6)) ||
   (match(board,player,1) && match(board,player,4) && match(board,player,7)) ||
   (match(board,player,2) && match(board,player,5) && match(board,player,8));
 
   var diagWin = (match(board,player,0) && match(board,player,4) && match(board,player,8)) ||
   (match(board,player,6) && match(board,player,4) && match(board,player,2));
 
-  return rowWin || columnWIn || diagWin;
+  return rowWin || columnWin || diagWin;
 }
 
 // Function to check draw condition
@@ -242,7 +242,7 @@ $.fn.extend({
 });
 
 //---------------------------------------------------
-// Konami code
+// Easter egg - Konami code
 var konami = [38,38,40,40,37,39,37,39,66,65];
 var enteredKeys = [];
 var konamiIndex = 0;
