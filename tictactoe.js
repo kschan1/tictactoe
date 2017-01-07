@@ -1,8 +1,8 @@
 
-// Create empty board with the specified number of grids
-function createBoard(gridNumber) {
+// Create empty board with the specified number of squares
+function createBoard(squareNumber) {
   var board = [];
-  for (var row = 0; row < gridNumber; row++) {
+  for (var row = 0; row < squareNumber; row++) {
     board.push('');
   }
   return board;
@@ -34,10 +34,6 @@ var currentPlayer = playerOne;
 // Variable for storing game state
 var gameEnds = false;
 var roundEnds = false;
-
-// Initiate lives display
-$('.p1-lives').text(playerOneLives);
-$('.p2-lives').text(playerTwoLives);
 
 // Function to change board element of given index
 function populate(board, player, index) {
@@ -136,33 +132,38 @@ function opponent(currentPlayer) {
 //----------------------------------------
 //DOM manipulation
 
+var $instructionDiv = $('#instruction');
+var $resultDiv = $('#result');
+var $p1Lives = $('.p1-lives');
+var $p2Lives = $('.p2-lives');
+
 // Function to updateLivesDisplay
 function updateLivesDisplay(player,animation) {
   if (player === playerOne) {
-    $('.p1-lives').text(playerOneLives);
-    $('.p1-lives').animateCss(animation);
+    $p1Lives.text(playerOneLives);
+    $p1Lives.animateCss(animation);
   } else if (player === playerTwo) {
-    $('.p2-lives').text(playerTwoLives);
-    $('.p2-lives').animateCss(animation);
+    $p2Lives.text(playerTwoLives);
+    $p2Lives.animateCss(animation);
   }
 }
 
-function updateGridDisplay(selectedGrid, player) {
-  $(selectedGrid).text(player);
-  $(selectedGrid).css({fontSize: "0em"});
-  $(selectedGrid).animate({fontSize: "4em"});
+function updateSquareDisplay(selectedSquare, player) {
+  $(selectedSquare).text(player);
+  $(selectedSquare).css({fontSize: "0em"});
+  $(selectedSquare).animate({fontSize: "4em"});
 }
 
 function resetGameDisplay() {
-  $('.grid').text('');
-  $('#result').text('');
-  $('#turn').text(currentPlayer + ' turn');
+  $('.square').text('');
+  $resultDiv.text('');
+  $instructionDiv.text(currentPlayer + ' turn');
 }
 
 //---------------------------------------------
 
 // Main game function
-$('.grid').on('click',function(event) {
+$('.square').on('click',function(event) {
   if (roundEnds) {
 
     // If game has ended, reset player's lives and display
@@ -180,13 +181,13 @@ $('.grid').on('click',function(event) {
     }
 
   } else if (!roundEnds) {
-    // Variable to store the index of the grid that was clicked on
+    // Variable to store the index of the square that was clicked on
     var index = $(event.target).index();
 
-    // Update board data and display if it is an empty grid
+    // Update board data and display if it is an empty square
     if (gameBoard[index] === '') {
       populate(gameBoard,currentPlayer,index);
-      updateGridDisplay(event.target,currentPlayer);
+      updateSquareDisplay(event.target,currentPlayer);
 
       // Update tally data and display if player wins
       if (checkWin(gameBoard,currentPlayer)) {
@@ -198,33 +199,33 @@ $('.grid').on('click',function(event) {
         if (checkGameEnds()) {
           gameEnds = true;
           console.log('entered gameEnds');
-          $('#result').text(currentPlayer + ' wins the game!');
+          $resultDiv.text(currentPlayer + ' wins the game!');
         } else {
           console.log('entered roundEnd');
-          $('#result').text(currentPlayer + ' wins!');
+          $resultDiv.text(currentPlayer + ' wins!');
         }
-        $('#result').animateCss('bounceIn');
+        $resultDiv.animateCss('bounceIn');
 
       // Update result display if draw
       } else if (checkDraw(gameBoard)) {
         roundEnds = true;
-        $('#result').text('Draw!')
-        $('#result').animateCss('bounce');
+        $resultDiv.text('Draw!');
+        $resultDiv.animateCss('bounce');
 
       // Switch player if game is still continuing
       } else {
         switchPlayer(currentPlayer);
-        $('#turn').text(currentPlayer + ' turn');
+        $instructionDiv.text(currentPlayer + ' turn');
       }
     }
 
     // Change player's turn display if game has ended
     if (roundEnds) {
       if (gameEnds) {
-        $('#turn').text('Click board to start over');
+        $instructionDiv.text('Click board to start over');
       }
       else {
-        $('#turn').text('Click board for next round');
+        $instructionDiv.text('Click board for next round');
       }
     }
 
@@ -274,3 +275,7 @@ function cheatCode(player) {
     updateLivesDisplay(player,'flash');
   }
 }
+
+// Initiate lives display
+$p1Lives.text(playerOneLives);
+$p2Lives.text(playerTwoLives);

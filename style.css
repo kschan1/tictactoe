@@ -27,8 +27,8 @@ h1 {
   box-shadow: 10px 10px 5px #888;
 }
 
-.grid {
-  display:inline-block;
+.square {
+  display: inline-block;
   width: 33.33333%;
   height: 33.33333%;
   line-height: 120px;
@@ -40,7 +40,7 @@ h1 {
   cursor: pointer;
 }
 
-.grid:active {
+.square:active {
   background-color: #333;
 }
 
@@ -51,10 +51,11 @@ h1 {
   font-size: 3em;
 }
 
-.result-box {
-  height: 3em;
+.result {
+  height: 48px;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
+  font-size: 3em;
 }
 
 .player-box-resp {
@@ -68,11 +69,7 @@ h1 {
   padding-left: 1em;
 }
 
-#result {
-  font-size: 3em;
-}
-
-#turn {
+.instruction {
   font-size: 1.5em;
   padding-bottom: 0.5em;
   height: 1.5em;
