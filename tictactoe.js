@@ -48,16 +48,16 @@ function match(board, player, index) {
 // Function to check winning condition
 // true is returned if any winning combination exists
 function checkWin(board, player) {
-  var rowWin = (match(board,player,0) && match(board,player,1) && match(board,player,2)) ||
-  (match(board,player,3) && match(board,player,4) && match(board,player,5)) ||
-  (match(board,player,6) && match(board,player,7) && match(board,player,8));
+  var rowWin = (match(board, player,0) && match(board, player,1) && match(board, player,2)) ||
+  (match(board, player,3) && match(board, player,4) && match(board, player,5)) ||
+  (match(board, player,6) && match(board, player,7) && match(board, player,8));
 
-  var columnWin = (match(board,player,0) && match(board,player,3) && match(board,player,6)) ||
-  (match(board,player,1) && match(board,player,4) && match(board,player,7)) ||
-  (match(board,player,2) && match(board,player,5) && match(board,player,8));
+  var columnWin = (match(board, player,0) && match(board, player,3) && match(board, player,6)) ||
+  (match(board, player,1) && match(board, player,4) && match(board, player,7)) ||
+  (match(board, player,2) && match(board, player,5) && match(board, player,8));
 
-  var diagWin = (match(board,player,0) && match(board,player,4) && match(board,player,8)) ||
-  (match(board,player,6) && match(board,player,4) && match(board,player,2));
+  var diagWin = (match(board, player,0) && match(board, player,4) && match(board, player,8)) ||
+  (match(board, player,6) && match(board, player,4) && match(board, player,2));
 
   return rowWin || columnWin || diagWin;
 }
@@ -136,9 +136,10 @@ var $instructionDiv = $('#instruction');
 var $resultDiv = $('#result');
 var $p1Lives = $('.p1-lives');
 var $p2Lives = $('.p2-lives');
+var $square = $('.square');
 
 // Function to updateLivesDisplay
-function updateLivesDisplay(player,animation) {
+function updateLivesDisplay(player, animation) {
   if (player === playerOne) {
     $p1Lives.text(playerOneLives);
     $p1Lives.animateCss(animation);
@@ -155,7 +156,7 @@ function updateSquareDisplay(selectedSquare, player) {
 }
 
 function resetGameDisplay() {
-  $('.square').text('');
+  $square.text('');
   $resultDiv.text('');
   $instructionDiv.text(currentPlayer + ' turn');
 }
@@ -163,14 +164,16 @@ function resetGameDisplay() {
 //---------------------------------------------
 
 // Main game function
-$('.square').on('click',function(event) {
+$square.on('click', function(event) {
   if (roundEnds) {
+    // This if statement is to enable user to reset game/round by clicking on
+    // after the game/round has ended
 
     // If game has ended, reset player's lives and display
     if (gameEnds) {
       resetGameData();
-      updateLivesDisplay(playerOne,'flash');
-      updateLivesDisplay(playerTwo,'flash');
+      updateLivesDisplay(playerOne, 'flash');
+      updateLivesDisplay(playerTwo, 'flash');
       resetRoundData(gameBoard);
       resetGameDisplay();
 
@@ -181,27 +184,26 @@ $('.square').on('click',function(event) {
     }
 
   } else if (!roundEnds) {
+    // Play game
     // Variable to store the index of the square that was clicked on
     var index = $(event.target).index();
 
     // Update board data and display if it is an empty square
     if (gameBoard[index] === '') {
-      populate(gameBoard,currentPlayer,index);
-      updateSquareDisplay(event.target,currentPlayer);
+      populate(gameBoard, currentPlayer, index);
+      updateSquareDisplay(event.target, currentPlayer);
 
       // Update tally data and display if player wins
-      if (checkWin(gameBoard,currentPlayer)) {
+      if (checkWin(gameBoard, currentPlayer)) {
         roundEnds = true;
         var opponentPlayer = opponent(currentPlayer);
         reduceLive(opponentPlayer);
-        updateLivesDisplay(opponentPlayer,'fadeOut');
+        updateLivesDisplay(opponentPlayer, 'fadeOut');
 
         if (checkGameEnds()) {
           gameEnds = true;
-          console.log('entered gameEnds');
           $resultDiv.text(currentPlayer + ' wins the game!');
         } else {
-          console.log('entered roundEnd');
           $resultDiv.text(currentPlayer + ' wins!');
         }
         $resultDiv.animateCss('bounceIn');
@@ -258,14 +260,14 @@ $(document).keydown(function(e) {
     enteredKeys = [];
   }
   if (enteredKeys.length === konami.length) {
-    cheatCode(currentPlayer);
+    increase30Lives(currentPlayer);
     konamiIndex = 0;
     enteredKeys = [];
   }
 });
 
 // Function to increase player's live by 30
-function cheatCode(player) {
+function increase30Lives(player) {
   if (!roundEnds) {
     if (player === playerOne) {
       playerOneLives += 30;
