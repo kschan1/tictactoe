@@ -160,6 +160,11 @@
     }
   }
 
+  function updateResultDisplay(string, animation) {
+    $resultDiv.text(string);
+    $resultDiv.animateCss(animation);
+  }
+
   function updateSquareDisplay(square, player) {
     square.text(player);
     square.css({fontSize: "0em"});
@@ -198,9 +203,12 @@
 
     } else if (!roundEnds) {
       // Play game
-      // Variable to store the index of the square that was clicked on
+
+      // Variables to store the clicked square and it's index
       var $selectedSquare = $(event.target);
       var selectedSquareIndex = $selectedSquare.index();
+
+      var resultMessage = '';
 
       // Update board data and display if it is an empty square
       if (gameBoard.populate(currentPlayer, selectedSquareIndex)) {
@@ -215,17 +223,17 @@
 
           if (checkGameEnds()) {
             gameEnds = true;
-            $resultDiv.text(currentPlayer + ' wins the game!');
+            resultMessage = currentPlayer + ' wins the game!';
           } else {
-            $resultDiv.text(currentPlayer + ' wins!');
+            resultMessage = currentPlayer + ' wins!';
           }
-          $resultDiv.animateCss('bounceIn');
+          updateResultDisplay(resultMessage, 'bounceIn');
 
-          // Update result display if draw
+          // Update result data and display if draw
         } else if (gameBoard.isFull()) {
           roundEnds = true;
-          $resultDiv.text('Draw!');
-          $resultDiv.animateCss('bounce');
+          resultMessage = 'Draw!';
+          updateResultDisplay(resultMessage, 'bounce');
 
           // Switch player if game is still continuing
         } else {
@@ -275,6 +283,7 @@
     }
     if (enteredKeys.length === konami.length) {
       increase30Lives(currentPlayer);
+      updateLivesDisplay(currentPlayer,'flash');
       konamiIndex = 0;
       enteredKeys = [];
     }
@@ -288,7 +297,6 @@
       } else if (player === playerTwo) {
         playerTwoLives += 30;
       }
-      updateLivesDisplay(player,'flash');
     }
   }
 
@@ -305,5 +313,5 @@
 
   // Event listener on squares that will run the game
   $square.on('click',runGame);
-  
+
 })();

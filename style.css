@@ -49,6 +49,7 @@ h1 {
   vertical-align: top;
   width: 100px;
   font-size: 3em;
+  visibility: visible;
 }
 
 .result {
@@ -62,7 +63,7 @@ h1 {
   display: inline-block;
   width: 360px;
   text-align: left;
-  display: none;
+  visibility: hidden;
 }
 
 .lives2 {
@@ -83,9 +84,10 @@ h1 {
 
 @media (max-width: 650px) {
   .player-box {
-    display: none;
+    visibility: hidden;
+    width: 0;
   }
   .player-box-resp {
-    display: inline-block;
+    visibility: visible;
   }
 }
